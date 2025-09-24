@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'application'
 }
-group = 'com.netflix.zuul.sample'
+group = 'org.example.zuul.sample'
 version = '1.0.0'
 
 repositories {
@@ -46,14 +46,14 @@ dependencies {
 }
 
 application {
-    mainClass = 'com.netflix.zuul.sample.OffloadingSampleServer'
+    mainClass = 'org.example.zuul.sample.OffloadingSampleServer'
 }
 
 task runServer(type: JavaExec) {
     group = "application"
     description = "Run the HTTP server for testing curl commands with async patterns"
     classpath = sourceSets.main.runtimeClasspath
-    mainClass = 'com.netflix.zuul.sample.SimpleHttpServer'
+    mainClass = 'org.example.zuul.sample.SimpleHttpServer'
 }
 
 test {

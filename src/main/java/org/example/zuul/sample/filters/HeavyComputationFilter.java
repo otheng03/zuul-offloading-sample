@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.netflix.zuul.sample.filters;
+package org.example.zuul.sample.filters;
 
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;

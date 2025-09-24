@@ -324,7 +324,7 @@ To add new async filters:
 Enable debug logging:
 ```properties
 # In application.properties
-logging.level.com.netflix.zuul.sample=DEBUG
+logging.level.org.example.zuul.sample=DEBUG
 ```
 
 ## Contributing

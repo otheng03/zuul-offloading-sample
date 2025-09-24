@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.netflix.zuul.sample;
+package org.example.zuul.sample;
 
-import com.netflix.zuul.sample.filters.BatchProcessingFilter;
-import com.netflix.zuul.sample.filters.DatabaseLookupFilter;
-import com.netflix.zuul.sample.filters.ExternalServiceCallFilter;
-import com.netflix.zuul.sample.filters.HeavyComputationFilter;
+import org.example.zuul.sample.filters.BatchProcessingFilter;
+import org.example.zuul.sample.filters.DatabaseLookupFilter;
+import org.example.zuul.sample.filters.ExternalServiceCallFilter;
+import org.example.zuul.sample.filters.HeavyComputationFilter;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
