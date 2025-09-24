@@ -19,6 +19,11 @@ dependencies {
     // Netty for server
     implementation 'io.netty:netty-all:4.1.100.Final'
 
+    // Additional dependencies for real server
+    implementation 'com.netflix.spectator:spectator-api:1.7.13'
+    implementation 'com.netflix.servo:servo-core:0.13.2'
+    implementation 'javax.servlet:servlet-api:2.5'
+
     // Guava for utilities
     implementation 'com.google.guava:guava:32.1.3-jre'
 
@@ -42,6 +47,13 @@ dependencies {
 
 application {
     mainClass = 'com.netflix.zuul.sample.OffloadingSampleServer'
+}
+
+task runServer(type: JavaExec) {
+    group = "application"
+    description = "Run the HTTP server for testing curl commands with async patterns"
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.netflix.zuul.sample.SimpleHttpServer'
 }
 
 test {

@@ -67,7 +67,7 @@ public class DatabaseLookupFilter extends HttpInboundFilter {
 
 ## Prerequisites
 
-- **Java 11+**
+- **Java 17+**
 - **Gradle 8.0+** (or use included wrapper)
 - **Internet connection** (for downloading dependencies)
 
@@ -89,11 +89,18 @@ cd zuul-offloading-sample
 ```
 
 ### 3. Run the Demonstration
+
+**Option 1: Console Demonstration**
 ```bash
 ./gradlew run
 ```
-
 This runs a console application that demonstrates the filter patterns and shows how they would be used in a real Zuul server.
+
+**Option 2: HTTP Server for Testing with curl**
+```bash
+./gradlew runServer
+```
+This starts an HTTP server on port 8080 that allows you to test the async filter patterns using curl commands (see Testing section below).
 
 ## Sample Output
 
@@ -140,8 +147,39 @@ public class YourZuulServer extends BaseServerStartup {
 }
 ```
 
-### 4. Testing the Filters
-Use HTTP headers to trigger specific filters:
+## Testing the Async Patterns
+
+### Option 1: Using the HTTP Server
+Start the HTTP server:
+```bash
+./gradlew runServer
+```
+
+Then test with these curl commands:
+```bash
+# Database lookup filter
+curl -H "X-User-ID: user123" http://localhost:8080/api/test
+
+# Heavy computation filter
+curl -H "X-Compute-Hash: true" -d "test data" http://localhost:8080/api/compute
+
+# External service call filter
+curl -H "X-Enrich-Data: true" http://localhost:8080/api/enrich
+
+# Test all filters together
+curl -H "X-User-ID: user123" -H "X-Compute-Hash: true" -H "X-Enrich-Data: true" \
+     -d "test data" http://localhost:8080/api/all
+
+# Batch processing runs automatically on all requests
+```
+
+You can see the filter results in:
+- **Response body**: Shows which filters were triggered and their results
+- **Response headers**: Contains filter outputs (X-User-Role, X-Computed-Hash, X-Enrichment-Data)
+- **Server logs**: Show async thread pool usage (RxCachedThreadScheduler-N for I/O, computation-pool-N for CPU)
+
+### Option 2: Integration with Real Zuul Server
+Use HTTP headers to trigger specific filters in your Zuul server:
 
 ```bash
 # Database lookup filter
