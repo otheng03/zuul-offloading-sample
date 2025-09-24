@@ -2,6 +2,8 @@
 
 This standalone project demonstrates how to use Zuul's async filter capabilities to offload long-running tasks from the Netty event loop, enabling high-performance request processing.
 
+**Note: This project was built by claude AI**
+
 ## Overview
 
 The sample includes four different patterns for offloading work:
